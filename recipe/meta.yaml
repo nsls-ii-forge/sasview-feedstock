@@ -1,0 +1,59 @@
+{% set name = "sasview" %}
+{% set version = "5.0.2" %}
+{% set sha256 = "92752efb4593be216ccc3063e70f5868ccf779c2815547610d0bc9ba460edd36" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/SasView/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: true  # [py<36]
+  entry_points:
+    - sasview = sas.qtgui.MainWindow.MainWindow:run_sasview
+  script:
+    - "{{ PYTHON }} $SRC_DIR/src/sas/qtgui/convertUI.py"  # [not win]
+    - "{{ PYTHON }} %SRC_DIR%\\src\\sas\\qtgui\\convertUI.py"  # [win]
+    - "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - numpy
+  run:
+    - python
+    - bumps
+    - h5py >=2.5
+    - lxml
+    - matplotlib-base
+    - periodictable >=1.5.0
+    - pillow
+    - pyparsing >=2.0.0
+    - pyqt >=5
+    - qt5reactor
+    - sasmodels
+    - scipy
+    - xhtml2pdf
+    - {{ pin_compatible('numpy') }}
+
+test:
+  imports:
+    - sas.sasview
+    - sas.qtgui
+    - sas.qtgui.MainWindow
+  commands:
+    - which sasview
+
+about:
+  home: https://github.com/SasView/sasview
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE.TXT
+  summary: SasView is a Small Angle Scattering (SAS) analysis package
