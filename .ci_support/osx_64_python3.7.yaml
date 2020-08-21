@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '9'
+- '10'
 docker_image:
 - nsls2/nsls2forge:latest
 macos_machine:
@@ -15,10 +15,12 @@ macos_machine:
 macos_min_version:
 - '10.9'
 numpy:
-- '1.14'
+- '1.16'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- '3.8'
+- '3.7'
+target_platform:
+- osx-64
