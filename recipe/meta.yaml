@@ -15,10 +15,6 @@ build:
   skip: true  # [py<36]
   entry_points:
     - sasview = sas.qtgui.MainWindow.MainWindow:run_sasview
-  script:
-    - "{{ PYTHON }} $SRC_DIR/src/sas/qtgui/convertUI.py"  # [not win]
-    - "{{ PYTHON }} %SRC_DIR%\\src\\sas\\qtgui\\convertUI.py"  # [win]
-    - "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   build:
