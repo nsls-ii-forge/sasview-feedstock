@@ -3,7 +3,7 @@ About sasview
 
 Home: https://github.com/SasView/sasview
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: [BSD-3-Clause](https://github.com/nsls-ii-forge/sasview-feedstock/blob/master/LICENSE.txt)
 
